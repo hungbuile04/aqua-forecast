@@ -1,8 +1,10 @@
 import pandas as pd
 import numpy as np
 import joblib
-from sklearn.preprocessing import StandardScaler
+from pathlib import Path
+from sklearn.multioutput import MultiOutputRegressor
 from sklearn.metrics import mean_squared_error
+import xgboost as xgb
 
 # ======================================================
 # CONFIG
@@ -11,150 +13,149 @@ from sklearn.metrics import mean_squared_error
 SPECIES = "oyster"   # "oyster" hoặc "cobia"
 
 OYSTER_FEATURES = [
-    "DO","Temperature","pH","Salinity",
-    "Alkalinity","Transparency",
-    "NH3","H2S","BOD5","Coliform","TSS"
+    'DO','Temperature','pH','Salinity','NH3','H2S',
+    'BOD5','TSS','Coliform','Alkalinity','Transparency'
 ]
 
 COBIA_FEATURES = [
-    "DO","Temperature","pH","Salinity",
-    "Alkalinity","Transparency",
-    "NH3","PO4","BOD5","Coliform","TSS"
+    'DO','Temperature','pH','Salinity','NH3','PO4',
+    'BOD5','TSS','Coliform','Alkalinity','Transparency'
 ]
 
 FEATURES = OYSTER_FEATURES if SPECIES == "oyster" else COBIA_FEATURES
 
+LAGS = [1, 4]        # t-1 và t-4 (1 quý, 1 năm)
+SEED = 42
+
 # ======================================================
-# UTILS
+# DATA PREP (GIỐNG HK)
 # ======================================================
 
-def impute_statistical(df, cols, method="median"):
-    for c in cols:
-        fill_value = df[c].median() if method == "median" else df[c].mean()
-        df[c] = df[c].fillna(fill_value)
-    return df
+def prepare_time_series_data(csv_path, features, lags):
+    df = pd.read_csv(csv_path)
 
+    df['Date'] = pd.to_datetime(df['Quarter'])
+    df = df.sort_values(['Station', 'Date'])
 
-def clean_missing_pipeline(df, features):
-    return impute_statistical(df, features, method="median")
+    # Nội suy theo trạm
+    def fill_missing(g):
+        g[features] = g[features].interpolate(
+            method='linear', limit_direction='both'
+        )
+        g[features] = g[features].fillna(g[features].median())
+        return g
 
+    df = df.groupby('Station', group_keys=False).apply(fill_missing)
 
-def make_lag_features(df, features, lag=1):
-    """
-    Tạo X(t) từ X(t-1)
-    """
-    df = df.sort_values(["Station", "Quarter"])
+    # Lag features
+    lag_cols = []
     for f in features:
-        df[f"{f}_lag{lag}"] = df.groupby("Station")[f].shift(lag)
-    return df
+        for lag in lags:
+            col = f"{f}_lag{lag}"
+            lag_cols.append(col)
+            df[col] = df.groupby('Station')[f].shift(lag)
 
+    # Feature thời gian
+    df['Quarter_Num'] = df['Date'].dt.quarter
 
-def nearest_station(lat, lon, stations_df):
-    """
-    Tìm trạm gần nhất từ toạ độ click
-    """
-    d = (stations_df["lat"] - lat)**2 + (stations_df["lon"] - lon)**2
-    return stations_df.loc[d.idxmin(), "Station"]
+    df = df.dropna().reset_index(drop=True)
+
+    X_cols = lag_cols + ['Quarter_Num']
+    return df, X_cols
+
 
 # ======================================================
-# LOAD MODEL (HK → QN)
+# FINE-TUNE FUNCTION
 # ======================================================
 
-if SPECIES == "oyster":
-    MODEL_PATH = "model/output/hk_oyster_env_model.pkl"
-    SCALER_PATH = "model/output/hk_oyster_scaler.pkl"
-else:
-    MODEL_PATH = "model/output/hk_cobia_env_model.pkl"
-    SCALER_PATH = "model/output/hk_cobia_scaler.pkl"
+def finetune_from_hk(
+    qn_csv,
+    hk_model_path,
+    out_model_path,
+    features
+):
+    print("🔹 Loading HK base model...")
+    base_model: MultiOutputRegressor = joblib.load(hk_model_path)
 
-model = joblib.load(MODEL_PATH)
-scaler = joblib.load(SCALER_PATH)
+    df, X_cols = prepare_time_series_data(qn_csv, features, LAGS)
 
-print("✅ Loaded base HK model")
+    X = df[X_cols]
+    y = df[features]
 
-# ======================================================
-# LOAD DATA
-# ======================================================
+    # =====================
+    # Fine-tune từng output
+    # =====================
+    new_estimators = []
 
-# Dữ liệu QN theo quý
-df_qn = pd.read_csv("data/qn_env_quarterly.csv")
-df_qn["Quarter"] = pd.to_datetime(df_qn["Quarter"])
+    for i, est in enumerate(base_model.estimators_):
+        print(f"🔁 Fine-tuning target: {features[i]}")
 
-# Bảng toạ độ trạm
-stations = pd.read_csv("data/stations.csv")
+        booster = est.get_booster()
 
-# ======================================================
-# CHỌN TOẠ ĐỘ (GIẢ LẬP CLICK MAP)
-# ======================================================
+        new_est = xgb.XGBRegressor(
+            n_estimators=300,          # thêm cây mới
+            learning_rate=0.03,        # nhỏ → fine-tune
+            max_depth=4,
+            subsample=0.8,
+            colsample_bytree=0.8,
+            objective='reg:squarederror',
+            random_state=SEED
+        )
 
-lat_click = 21.02
-lon_click = 107.05
+        new_est.fit(
+            X, y.iloc[:, i],
+            xgb_model=booster
+        )
 
-station = nearest_station(lat_click, lon_click, stations)
-print(f"📍 Selected station: {station}")
+        new_estimators.append(new_est)
 
-df_station = df_qn[df_qn["Station"] == station].copy()
+    finetuned_model = MultiOutputRegressor(
+        estimator=None
+    )
+    finetuned_model.estimators_ = new_estimators
 
-# ======================================================
-# PREPROCESS
-# ======================================================
+    # =====================
+    # Đánh giá nhanh
+    # =====================
+    y_pred = finetuned_model.predict(X)
+    rmse = np.sqrt(
+        mean_squared_error(y, y_pred, multioutput='raw_values')
+    )
 
-df_station = clean_missing_pipeline(df_station, FEATURES)
+    print("\n📊 RMSE sau fine-tune:")
+    for f, r in zip(features, rmse):
+        print(f"  {f:<15}: {r:.4f}")
+    print(f"👉 RMSE trung bình: {rmse.mean():.4f}")
 
-# Tạo lag
-df_lag = make_lag_features(df_station, FEATURES, lag=1)
-df_lag = df_lag.dropna()
+    joblib.dump(
+        (finetuned_model, X_cols, features),
+        out_model_path
+    )
+    print(f"\n✅ Saved fine-tuned model: {out_model_path}")
 
-X = df_lag[[f"{f}_lag1" for f in FEATURES]]
-y = df_lag[FEATURES]
-
-# ======================================================
-# FINE-TUNE MODEL ON QN
-# ======================================================
-
-Xs = scaler.transform(X)
-model.fit(Xs, y)
-
-print("✅ Fine-tuned model on Quảng Ninh data")
-
-# ======================================================
-# FORECAST 4 QUARTERS AHEAD
-# ======================================================
-
-last_row = df_station.sort_values("Quarter").iloc[-1]
-x_t = last_row[FEATURES].values.reshape(1, -1)
-
-future_preds = []
-future_quarters = pd.date_range(
-    start=last_row["Quarter"] + pd.offsets.QuarterBegin(),
-    periods=4,
-    freq="QS"
-)
-
-for q in future_quarters:
-    x_scaled = scaler.transform(x_t)
-    y_next = model.predict(x_scaled)
-
-    future_preds.append(y_next.flatten())
-    x_t = y_next   # recursive forecasting
 
 # ======================================================
-# OUTPUT
+# MAIN
 # ======================================================
 
-df_forecast = pd.DataFrame(
-    future_preds,
-    columns=[f"{c}_pred" for c in FEATURES]
-)
-df_forecast["Quarter"] = future_quarters
-df_forecast["Station"] = station
+if __name__ == "__main__":
 
-print("\n🔮 FORECAST RESULT (4 QUARTERS):")
-print(df_forecast)
+    PROJECT_DIR = Path(__file__).resolve().parents[1]
 
-df_forecast.to_csv(
-    f"output/forecast_{SPECIES}_{station}.csv",
-    index=False
-)
+    DATA_QN = PROJECT_DIR / "data" / "data_quang_ninh" / "qn_env_clean_ready.csv"
+    MODEL_DIR = PROJECT_DIR / "model" / "output"
+    MODEL_DIR.mkdir(exist_ok=True, parents=True)
 
-print("\n📁 Saved forecast file")
+    if SPECIES == "oyster":
+        HK_MODEL = MODEL_DIR / "hk_oyster_forecast_model.pkl"
+        OUT_MODEL = MODEL_DIR / "qn_oyster_finetuned.pkl"
+    else:
+        HK_MODEL = MODEL_DIR / "hk_cobia_forecast_model.pkl"
+        OUT_MODEL = MODEL_DIR / "qn_cobia_finetuned.pkl"
+
+    finetune_from_hk(
+        qn_csv=DATA_QN,
+        hk_model_path=HK_MODEL,
+        out_model_path=OUT_MODEL,
+        features=FEATURES
+    )
