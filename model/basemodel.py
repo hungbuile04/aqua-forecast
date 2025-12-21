@@ -69,6 +69,22 @@ def prepare_time_series_data(csv_path, features_list, lags=[1, 4]):
     input_features = lag_cols + time_features
     return df_final, input_features
 
+# Hàm xử lý ngoại lệ
+def clip_percentile(series, lower=0.01, upper=0.99):
+    lo = series.quantile(lower)
+    hi = series.quantile(upper)
+    return series.clip(lo, hi)
+
+def handle_outliers(df, features):
+    df = df.copy()
+
+    log_cols = ["Coliform", "TSS", "BOD5", "NH3"]
+    for c in log_cols:
+        if c in features and c in df.columns:
+            df[c] = clip_percentile(df[c], 0.01, 0.99)
+
+    return df
+
 
 # Hàm huấn luyện
 def train_forecast_model(csv_path, features, model_out_path, meta_out_path=None):
@@ -78,6 +94,8 @@ def train_forecast_model(csv_path, features, model_out_path, meta_out_path=None)
     
     if df_train is None:
         return
+    
+    df_train = handle_outliers(df_train, features)
 
     X = df_train[input_cols]      # Quá khứ
     y = df_train[features]        # Hiện tại (Mục tiêu)
