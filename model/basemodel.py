@@ -26,7 +26,6 @@ COBIA_FEATURES = [
 
 # Hàm đọc CSV, làm sạch, điền dữ liệu thiếu và tạo Lag Features.
 def prepare_time_series_data(csv_path, features_list, lags=[1, 4]):
-
     csv_path = str(csv_path)
     df = pd.read_csv(csv_path)
     
@@ -73,7 +72,6 @@ def prepare_time_series_data(csv_path, features_list, lags=[1, 4]):
 
 # Hàm huấn luyện
 def train_forecast_model(csv_path, features, model_out_path, meta_out_path=None):
-
     model_out_path = str(model_out_path)
     
     df_train, input_cols = prepare_time_series_data(csv_path, features, lags=[1, 4])
