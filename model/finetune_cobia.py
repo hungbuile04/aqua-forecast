@@ -74,19 +74,19 @@ if __name__ == "__main__":
     PROJECT_DIR = BASE_DIR.parent
     
     MODEL_DIR = PROJECT_DIR / "model" / "output"
-    BASE_OYSTER_MODEL = MODEL_DIR / "hk_oyster_forecast_model.pkl"
+    BASE_COBIA_MODEL = MODEL_DIR / "hk_cobia_forecast_model.pkl"
     
     # Đường dẫn đến dữ liệu cần được fine-tune
     NEW_DATA_PATH = PROJECT_DIR / "data" / "data_quang_ninh" / "qn_env_clean_ready.csv"
     
     # Đường dẫn lưu model mới
-    OUTPUT_FINETUNE = MODEL_DIR / "hk_oyster_finetuned.pkl"
+    OUTPUT_FINETUNE = MODEL_DIR / "hk_cobia_finetuned.pkl"
 
     
-    # Chạy Fine-tune cho HÀU (sửa cái này để chạy lại cho CÁ GIÒ)
+    # Chạy Fine-tune cho CÁ GIÒ (sửa cái này để chạy lại cho HÀU)
     finetune_model(
-        base_model_path = BASE_OYSTER_MODEL,
+        base_model_path = BASE_COBIA_MODEL,
         new_data_path = NEW_DATA_PATH,
         output_path = OUTPUT_FINETUNE,
-        features_list = OYSTER_FEATURES
+        features_list = COBIA_FEATURES
     )
