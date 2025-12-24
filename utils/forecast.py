@@ -231,13 +231,56 @@ def predict_future_non_metal_field_for_station(
 
     return df_future
 
+def predict_for_station(
+    species,
+    x,
+    y,
+    start_year,
+    start_quarter,
+    n_quarters=4
+):
+    """
+    Dự báo một quý cho trạm cụ thể.
+
+    Hàm này sử dụng hàm `predict_future_non_metal_field_for_station` và `predict_future_metal_field_for_station`  để dự báo
+    một quý duy nhất cho trạm xác định bởi tọa độ (x, y).
+
+    Tham số
+    ----------
+    species : {"oyster", "cobia"}
+        Loài sử dụng mô hình dự báo (hàu hoặc cá giò).
+    """
+    df1 = predict_future_non_metal_field_for_station(
+        species=species,
+        x=x,
+        y=y,
+        start_year=start_year,
+        start_quarter=start_quarter,
+        n_quarters=n_quarters
+    )
+    df2 = predict_future_metal_field_for_station(
+        start_year=start_year,
+        start_quarter=start_quarter,
+        n_quarters=n_quarters,
+        x=x,
+        y=y
+    )
+    df_merged = pd.merge(
+        df1,
+        df2,
+        on=["year", "quarter"],
+        how="inner"
+    )
+    return df_merged
+
 #Test
-df = predict_future_non_metal_field_for_station(
+df = predict_for_station(
     species="cobia",
     x=2318587,
     y=428692,
     start_year=2026,
     start_quarter=1,
-    n_quarters=8
+    n_quarters=4
 )
 print(df)
+df.info()

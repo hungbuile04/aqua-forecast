@@ -180,6 +180,24 @@ def add_synthetic_transparency(
     df["Transparency_source"] = "synthetic_lognormal"
     return df
 
+def add_synthetic_cod(
+    df,
+    mean_log=4.3,     # mean của log(COD)
+    std_log=0.55,     # std của log(COD)
+    min_val=8,        # mg/L
+    max_val=220
+):
+    """
+    Sinh COD giả (mg/L) theo phân phối log-normal (lệch phải),
+    phù hợp với phân phối COD thực tế môi trường.
+    """
+    vals = np.random.lognormal(mean=mean_log, sigma=std_log, size=len(df))
+    vals = np.clip(vals, min_val, max_val)
+
+    df["COD"] = vals
+    return df
+
+
 if __name__ == "__main__":
     np.random.seed(42)
 
@@ -198,6 +216,7 @@ if __name__ == "__main__":
     cobia_std = add_synthetic_h2s(cobia_std)
     cobia_std = add_synthetic_alkalinity(cobia_std)
     cobia_std = add_synthetic_transparency(cobia_std)
+    cobia_std = add_synthetic_cod(cobia_std)
 
     cobia_std.to_csv(
         f"{OUT_DIR}/hk_cobia_quarterly_21vars.csv",
@@ -210,6 +229,7 @@ if __name__ == "__main__":
     oyster_std = add_synthetic_h2s(oyster_std)
     oyster_std = add_synthetic_alkalinity(oyster_std)
     oyster_std = add_synthetic_transparency(oyster_std)
+    oyster_std = add_synthetic_cod(oyster_std)
 
     oyster_std.to_csv(
         f"{OUT_DIR}/hk_oyster_quarterly_21vars.csv",

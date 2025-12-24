@@ -13,13 +13,13 @@ warnings.filterwarnings('ignore')
 
 #  HÀU
 OYSTER_FEATURES = [
-    'DO', 'Temperature', 'pH', 'Salinity', 'NH3', 'H2S', 'BOD5', 
+    'DO', 'Temperature', 'pH', 'Salinity', 'NH3', 'H2S', 'BOD5', 'COD',
     'TSS', 'Coliform', 'Alkalinity', 'Transparency',
 ]
 
 #  CÁ GIÒ
 COBIA_FEATURES = [
-    'DO', 'Temperature', 'pH', 'Salinity', 'NH3', 'PO4', 'BOD5', 
+    'DO', 'Temperature', 'pH', 'Salinity', 'NH3', 'PO4', 'BOD5', 'COD',
     'TSS', 'Coliform', 'Alkalinity', 'Transparency'
 ]
 

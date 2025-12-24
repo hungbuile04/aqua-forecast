@@ -28,6 +28,7 @@ def compute_hsi(df_forecast, species):
             "NH3":         {"max_val": 0.3},
             "H2S":         {"max_val": 0.05},
             "BOD5":        {"max_val": 50},
+            "COD":         {"max_val": 150},
             "Coliform":    {"max_val": 5000},
             "TSS":         {"max_val": 50},
             "CN":          {"max_val": 0.1},
@@ -50,6 +51,7 @@ def compute_hsi(df_forecast, species):
             "NH3":         {"max_val": 0.1},
             "PO4":         {"max_val": 0.2},
             "BOD5":        {"max_val": 50},
+            "COD":         {"max_val": 150},
             "Coliform":    {"max_val": 5000},
             "TSS":         {"max_val": 50},
             "CN":          {"max_val": 0.1},
@@ -122,9 +124,9 @@ def compute_hsi(df_forecast, species):
 
     # Gán nhãn mức độ phù hợp
     def _label(h):
-        if h >= 0.8:
+        if h >= 0.85:
             return "Rất phù hợp"
-        elif h >= 0.6:
+        elif h >= 0.75:
             return "Phù hợp"
         elif h >= 0.5:
             return "Ít phù hợp"
