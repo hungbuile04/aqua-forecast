@@ -1,0 +1,399 @@
+DANH SÁCH TRA CỨU TỌA ĐỘ
+================================================================================
+
+NB1: Luồng vào cảng Cái Lân tại cầu Bãi Cháy
+  Query: Luồng Luồng cảng Cái Lân, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20c%E1%BA%A3ng%20C%C3%A1i%20L%C3%A2n%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB2: Cảng B12- vịnh Cửa Lục
+  Query: Cảng Cảng B12 vịnh Cửa, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BA%A3ng%20C%E1%BA%A3ng%20B12%20v%E1%BB%8Bnh%20C%E1%BB%ADa%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB3: Cảng Cái Lân- vịnh Cửa Lục
+  Query: Cảng Cảng Cái Lân vịnh, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BA%A3ng%20C%E1%BA%A3ng%20C%C3%A1i%20L%C3%A2n%20v%E1%BB%8Bnh%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB4: Khu Hòn Gạc- vịnh Cửa Lục
+  Query: Khu Khu Hòn Gạc vịnh, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20H%C3%B2n%20G%E1%BA%A1c%20v%E1%BB%8Bnh%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB5: Ven bờ khu đô thị CENCO 5
+  Query: Ven Ven bờ khu CENCO, Quảng Ninh
+  Link: https://www.google.com/maps/search/Ven%20Ven%20b%E1%BB%9D%20khu%20CENCO%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB6: Cửa sông Trới ven bờ KCN Việt Hưng
+  Query: Cửa Cửa sông Trới ven, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BB%ADa%20C%E1%BB%ADa%20s%C3%B4ng%20Tr%E1%BB%9Bi%20ven%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB7: Cửa sông Man tại cầu Đá Trắng đường Trới- Vũ Oai
+  Query: Cửa Cửa sông Man cầu, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BB%ADa%20C%E1%BB%ADa%20s%C3%B4ng%20Man%20c%E1%BA%A7u%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB8: Cửa sông Diễn Vọng tại cầu Bang
+  Query: Cửa Cửa sông Diễn Vọng, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BB%ADa%20C%E1%BB%ADa%20s%C3%B4ng%20Di%E1%BB%85n%20V%E1%BB%8Dng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB9: Bến phà Tuần Châu
+  Query: Bến phà Tuần Châu, Quảng Ninh
+  Link: https://www.google.com/maps/search/B%E1%BA%BFn%20ph%C3%A0%20Tu%E1%BA%A7n%20Ch%C3%A2u%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB10: Bãi tắm Tuần  Châu
+  Query: Bãi Bãi tắm Tuần Châu, Quảng Ninh
+  Link: https://www.google.com/maps/search/B%C3%A3i%20B%C3%A3i%20t%E1%BA%AFm%20Tu%E1%BA%A7n%20Ch%C3%A2u%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB11: Cửa sông Hòn Dấu
+  Query: Cửa Cửa sông Hòn Dấu, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BB%ADa%20C%E1%BB%ADa%20s%C3%B4ng%20H%C3%B2n%20D%E1%BA%A5u%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB12: Bãi tắm Bãi Cháy - phía Tây bãi tắm giáp Đảo Rều
+  Query: Bãi Bãi tắm Bãi Bãi, Quảng Ninh
+  Link: https://www.google.com/maps/search/B%C3%A3i%20B%C3%A3i%20t%E1%BA%AFm%20B%C3%A3i%20B%C3%A3i%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB13: Bãi tắm Bãi Cháy - khu Trung tâm bãi tắm
+  Query: Bãi Bãi tắm Bãi Bãi, Quảng Ninh
+  Link: https://www.google.com/maps/search/B%C3%A3i%20B%C3%A3i%20t%E1%BA%AFm%20B%C3%A3i%20B%C3%A3i%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB14: Ven bờ phường Hùng Thắng
+  Query: Ven Ven bờ Hùng Thắng, Quảng Ninh
+  Link: https://www.google.com/maps/search/Ven%20Ven%20b%E1%BB%9D%20H%C3%B9ng%20Th%E1%BA%AFng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB15: Sau chợ Hạ Long 1- cầu Bài Thơ Hạ Long
+  Query: Sau Hạ Long cầu Bài, Quảng Ninh
+  Link: https://www.google.com/maps/search/Sau%20H%E1%BA%A1%20Long%20c%E1%BA%A7u%20B%C3%A0i%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB16: Ven bờ khu vực Bến Đoan- Hạ Long
+  Query: Ven Ven bờ khu Bến, Quảng Ninh
+  Link: https://www.google.com/maps/search/Ven%20Ven%20b%E1%BB%9D%20khu%20B%E1%BA%BFn%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB17: Ven bờ khu vực cột 5- phường Hồng Hà- TP Hạ Long
+  Query: Ven Ven bờ khu Hồng, Quảng Ninh
+  Link: https://www.google.com/maps/search/Ven%20Ven%20b%E1%BB%9D%20khu%20H%E1%BB%93ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB18: Lạch Hạm Nam Cầu Trắng- TP Hạ Long
+  Query: Lạch Hạm Nam Cầu Cầu, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%E1%BA%A1ch%20H%E1%BA%A1m%20Nam%20C%E1%BA%A7u%20C%E1%BA%A7u%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB19: Lạch Lộ Phong- TP Hạ Long
+  Query: Lạch Lộ Phong TP Hạ, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%E1%BA%A1ch%20L%E1%BB%99%20Phong%20TP%20H%E1%BA%A1%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB20: Cảng Km 6 - TP Cẩm Phả
+  Query: Cảng Cảng Km TP Cẩm, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BA%A3ng%20C%E1%BA%A3ng%20Km%20TP%20C%E1%BA%A9m%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB21: Cảng Vũng Đục - TP Cẩm Phả
+  Query: Cảng Cảng Vũng Đục TP, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BA%A3ng%20C%E1%BA%A3ng%20V%C5%A9ng%20%C4%90%E1%BB%A5c%20TP%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB22: Khu vực Hòn Lướt ven cụm công nghiệp Cẩm Thịnh
+  Query: Khu Khu Hòn Lướt ven, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20H%C3%B2n%20L%C6%B0%E1%BB%9Bt%20ven%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB23: Ven bờ Nhiệt điện Cẩm Phả - tuyển than Cửa Ông
+  Query: Ven Ven bờ Nhiệt Cẩm, Quảng Ninh
+  Link: https://www.google.com/maps/search/Ven%20Ven%20b%E1%BB%9D%20Nhi%E1%BB%87t%20C%E1%BA%A9m%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB24: Cảng Cửa Ông- TP Cẩm Phả
+  Query: Cảng Cảng Cửa Cửa Ông, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BA%A3ng%20C%E1%BA%A3ng%20C%E1%BB%ADa%20C%E1%BB%ADa%20%C3%94ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB25: Cảng Cái Rồng- Vân Đồn
+  Query: Cảng Cảng Cái Rồng Vân, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BA%A3ng%20C%E1%BA%A3ng%20C%C3%A1i%20R%E1%BB%93ng%20V%C3%A2n%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB26: Khu vực cảng 10-10 - Cẩm Phả
+  Query: Khu Khu cảng Cẩm Phả, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20c%E1%BA%A3ng%20C%E1%BA%A9m%20Ph%E1%BA%A3%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB27: Khu vực cửa sông Mông Dương - TP.  Cẩm Phả
+  Query: Khu Khu cửa sông Mông, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20c%E1%BB%ADa%20s%C3%B4ng%20M%C3%B4ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB28: Khu vực ven bờ xã Cẩm Hải, TP.  Cẩm Phả
+  Query: Khu Khu ven bờ Cẩm, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20ven%20b%E1%BB%9D%20C%E1%BA%A9m%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB29: Luồng Voi Lớn phía Tây xã Đoàn Kết- Vân Đồn
+  Query: Luồng Luồng Voi Lớn Tây, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20Voi%20L%E1%BB%9Bn%20T%C3%A2y%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB30: Ven bờ Đông Nam xã Đông Xá
+  Query: Ven Ven bờ Đông Nam, Quảng Ninh
+  Link: https://www.google.com/maps/search/Ven%20Ven%20b%E1%BB%9D%20%C4%90%C3%B4ng%20Nam%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB31: Ven bờ Đông xã Hạ Long- Vân Đồn
+  Query: Ven Ven bờ Đông Hạ, Quảng Ninh
+  Link: https://www.google.com/maps/search/Ven%20Ven%20b%E1%BB%9D%20%C4%90%C3%B4ng%20H%E1%BA%A1%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB32: Cảng Vạn Hoa- xã Vạn Yên- Vân Đồn
+  Query: Cảng Cảng Vạn Hoa Vạn, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BA%A3ng%20C%E1%BA%A3ng%20V%E1%BA%A1n%20Hoa%20V%E1%BA%A1n%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB33: Thiên Cung - Đầu Gỗ
+  Query: Thiên Cung Đầu Gỗ, Quảng Ninh
+  Link: https://www.google.com/maps/search/Thi%C3%AAn%20Cung%20%C4%90%E1%BA%A7u%20G%E1%BB%97%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB34: Đảo TiTop
+  Query: Đảo Đảo TiTop, Quảng Ninh
+  Link: https://www.google.com/maps/search/%C4%90%E1%BA%A3o%20%C4%90%E1%BA%A3o%20TiTop%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB35: Khu nghỉ đêm - Cát Lán
+  Query: Khu Khu Cát Lán, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20C%C3%A1t%20L%C3%A1n%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB36: Khu Nghỉ đêm - Hang Luồn
+  Query: Khu Khu Nghỉ Hang Luồn, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20Ngh%E1%BB%89%20Hang%20Lu%E1%BB%93n%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB37: Bồ Nâu - Sửng Sốt
+  Query: Bồ Nâu Sửng Sốt, Quảng Ninh
+  Link: https://www.google.com/maps/search/B%E1%BB%93%20N%C3%A2u%20S%E1%BB%ADng%20S%E1%BB%91t%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB38: Khu nghỉ đêm - Lờm bò
+  Query: Khu Khu Lờm, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20L%E1%BB%9Dm%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB39: Khu nghỉ đêm Cống Đỏ
+  Query: Khu Khu Cống Đỏ, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20C%E1%BB%91ng%20%C4%90%E1%BB%8F%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB40: Làng chài Ba Hang
+  Query: Làng Ba Hang, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%C3%A0ng%20Ba%20Hang%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB41: Làng chài Hoa Cương
+  Query: Làng Hoa Cương, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%C3%A0ng%20Hoa%20C%C6%B0%C6%A1ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB42: Làng chài Cửa Vạn
+  Query: Làng Cửa Cửa Vạn, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%C3%A0ng%20C%E1%BB%ADa%20C%E1%BB%ADa%20V%E1%BA%A1n%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB43: Làng chài Cống Tầu
+  Query: Làng Cống Tầu, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%C3%A0ng%20C%E1%BB%91ng%20T%E1%BA%A7u%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB44: Làng chài Vông Viêng
+  Query: Làng Vông Viêng, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%C3%A0ng%20V%C3%B4ng%20Vi%C3%AAng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB45: Làng chài Cống Đầm
+  Query: Làng Cống Đầm, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%C3%A0ng%20C%E1%BB%91ng%20%C4%90%E1%BA%A7m%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB46: Bãi Dài - Vân Đồn
+  Query: Bãi Bãi Dài Vân Đồn, Quảng Ninh
+  Link: https://www.google.com/maps/search/B%C3%A3i%20B%C3%A3i%20D%C3%A0i%20V%C3%A2n%20%C4%90%E1%BB%93n%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB47: Bãi tắm Minh Châu- xã Minh Châu, Vân Đồn
+  Query: Bãi Bãi tắm Minh Châu, Quảng Ninh
+  Link: https://www.google.com/maps/search/B%C3%A3i%20B%C3%A3i%20t%E1%BA%AFm%20Minh%20Ch%C3%A2u%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB48: Bãi tắm Sơn Hào- xã Quan Lạn, Vân Đồn
+  Query: Bãi Bãi tắm Sơn Hào, Quảng Ninh
+  Link: https://www.google.com/maps/search/B%C3%A3i%20B%C3%A3i%20t%E1%BA%AFm%20S%C6%A1n%20H%C3%A0o%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB49: Bãi tắm Quan Lạn- xã Quan Lạn, Vân Đồn
+  Query: Bãi Bãi tắm Quan Lạn, Quảng Ninh
+  Link: https://www.google.com/maps/search/B%C3%A3i%20B%C3%A3i%20t%E1%BA%AFm%20Quan%20L%E1%BA%A1n%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB50: Bãi tắm Ngọc Vừng- xã Ngọc Vừng, Vân Đồn
+  Query: Bãi Bãi tắm Ngọc Vừng, Quảng Ninh
+  Link: https://www.google.com/maps/search/B%C3%A3i%20B%C3%A3i%20t%E1%BA%AFm%20Ng%E1%BB%8Dc%20V%E1%BB%ABng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB51: Luồng giữa Cửa Lục
+  Query: Luồng Luồng Cửa Cửa Lục, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20C%E1%BB%ADa%20C%E1%BB%ADa%20L%E1%BB%A5c%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB52: Luồng khu Hòn Một
+  Query: Luồng Luồng khu Hòn Một, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20khu%20H%C3%B2n%20M%E1%BB%99t%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB53: Luồng khu Áng Dù
+  Query: Luồng Luồng khu Áng Dù, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20khu%20%C3%81ng%20D%C3%B9%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB54: Luồng Hang Trống
+  Query: Luồng Luồng Hang Trống, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20Hang%20Tr%E1%BB%91ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB55: Luồng khu Trà Giới
+  Query: Luồng Luồng khu Trà Giới, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20khu%20Tr%C3%A0%20Gi%E1%BB%9Bi%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB56: Luồng khu Đông Tráng
+  Query: Luồng Luồng khu Đông Tráng, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20khu%20%C4%90%C3%B4ng%20Tr%C3%A1ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB57: Cảng Hòn Nét
+  Query: Cảng Cảng Hòn Nét, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BA%A3ng%20C%E1%BA%A3ng%20H%C3%B2n%20N%C3%A9t%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB58: Luồng Cửa Ông
+  Query: Luồng Luồng Cửa Cửa Ông, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20C%E1%BB%ADa%20C%E1%BB%ADa%20%C3%94ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB59: Lạch Vông Vang - Cống Thẻ
+  Query: Lạch Vông Vang Cống Thẻ, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%E1%BA%A1ch%20V%C3%B4ng%20Vang%20C%E1%BB%91ng%20Th%E1%BA%BB%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB60: Cửa Đối
+  Query: Cửa Cửa Đối, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BB%ADa%20C%E1%BB%ADa%20%C4%90%E1%BB%91i%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB61: Lạch giữa đảo Thẻ Vàng- đảo Vạn Đuôi
+  Query: Lạch đảo Thẻ Vàng đảo, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%E1%BA%A1ch%20%C4%91%E1%BA%A3o%20Th%E1%BA%BB%20V%C3%A0ng%20%C4%91%E1%BA%A3o%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB62: Lạch Đẳng Chén phía Tây đảo Đống Chén
+  Query: Lạch Đẳng Chén Tây đảo, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%E1%BA%A1ch%20%C4%90%E1%BA%B3ng%20Ch%C3%A9n%20T%C3%A2y%20%C4%91%E1%BA%A3o%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB63: Lạch Đầu Gỗ phía Đông đảo Đống Chén
+  Query: Lạch Đầu Gỗ Đông đảo, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%E1%BA%A1ch%20%C4%90%E1%BA%A7u%20G%E1%BB%97%20%C4%90%C3%B4ng%20%C4%91%E1%BA%A3o%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB64: Lạch Cống Nứa phía Đông đảo Cống Nứa
+  Query: Lạch Cống Nứa Đông đảo, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%E1%BA%A1ch%20C%E1%BB%91ng%20N%E1%BB%A9a%20%C4%90%C3%B4ng%20%C4%91%E1%BA%A3o%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB65: Vụng Đá Bạc phía Đông đảo Trà Bản
+  Query: Vụng Đá Bạc Đông đảo, Quảng Ninh
+  Link: https://www.google.com/maps/search/V%E1%BB%A5ng%20%C4%90%C3%A1%20B%E1%BA%A1c%20%C4%90%C3%B4ng%20%C4%91%E1%BA%A3o%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB66: Luồng Con Quýt phía Tây Bắc đảo Trà Bản
+  Query: Luồng Luồng Con Quýt Tây, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20Con%20Qu%C3%BDt%20T%C3%A2y%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB67: Luồng Con Quýt phía Đông đảo Cái Lim
+  Query: Luồng Luồng Con Quýt Đông, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20Con%20Qu%C3%BDt%20%C4%90%C3%B4ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB68: Lạch Vông Vang phía Bắc đảo Trà Bản
+  Query: Lạch Vông Vang Bắc đảo, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%E1%BA%A1ch%20V%C3%B4ng%20Vang%20B%E1%BA%AFc%20%C4%91%E1%BA%A3o%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB69: Lạch đảo Cống Đông- Cống Tây
+  Query: Lạch đảo Cống Đông Cống, Quảng Ninh
+  Link: https://www.google.com/maps/search/L%E1%BA%A1ch%20%C4%91%E1%BA%A3o%20C%E1%BB%91ng%20%C4%90%C3%B4ng%20C%E1%BB%91ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB70: Ven bờ khu Cống Yên phía Bắc đảo Ngọc Vừng
+  Query: Ven Ven bờ khu Cống, Quảng Ninh
+  Link: https://www.google.com/maps/search/Ven%20Ven%20b%E1%BB%9D%20khu%20C%E1%BB%91ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB71: Cửa sông Rút- sông - sông Bạch Đằng, phía Tây xã Tiền Phong
+  Query: Cửa Cửa sông Rút sông, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BB%ADa%20C%E1%BB%ADa%20s%C3%B4ng%20R%C3%BAt%20s%C3%B4ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB72: Cửa sông Chanh, phía Đông Bắc xã Tiền Phong
+  Query: Cửa Cửa sông Chanh Đông, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BB%ADa%20C%E1%BB%ADa%20s%C3%B4ng%20Chanh%20%C4%90%C3%B4ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB73: Cửa sông Kênh Trai, giáp ranh xã Tân An- Hoàng Tân
+  Query: Cửa Cửa sông Kênh Trai, Quảng Ninh
+  Link: https://www.google.com/maps/search/C%E1%BB%ADa%20C%E1%BB%ADa%20s%C3%B4ng%20K%C3%AAnh%20Trai%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB74: Luồng sông Voi Lớn, phía Nam xã Đồng Rui, Tiên Yên
+  Query: Luồng Luồng sông Voi Lớn, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20s%C3%B4ng%20Voi%20L%E1%BB%9Bn%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB75: Luồng sông Voi Lớn, ven bờ xã Hải Lạng, Tiên Yên
+  Query: Luồng Luồng sông Voi Lớn, Quảng Ninh
+  Link: https://www.google.com/maps/search/Lu%E1%BB%93ng%20Lu%E1%BB%93ng%20s%C3%B4ng%20Voi%20L%E1%BB%9Bn%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB76: Khu vực cảng Mũi Chùa (cửa sông Tiên Yên)
+  Query: Khu Khu cảng Mũi Chùa, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20c%E1%BA%A3ng%20M%C5%A9i%20Ch%C3%B9a%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB77: Khu vực Hòn Thạch, Đầm Hà
+  Query: Khu Khu Hòn Thạch Đầm, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20H%C3%B2n%20Th%E1%BA%A1ch%20%C4%90%E1%BA%A7m%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB78: Khu vực ven bờ xã Đầm Hà, huyện Đầm Hà (cửa sông Đầm Hà)
+  Query: Khu Khu ven bờ Đầm, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20ven%20b%E1%BB%9D%20%C4%90%E1%BA%A7m%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB79: Khu vực cửa sông Đường Hoa, huyện Hải Hà
+  Query: Khu Khu cửa sông Đường, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20c%E1%BB%ADa%20s%C3%B4ng%20%C4%90%C6%B0%E1%BB%9Dng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB80: Khu vực Bắc Hòn Mỹ, Hải Hà
+  Query: Khu Khu Bắc Hòn Mỹ, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20B%E1%BA%AFc%20H%C3%B2n%20M%E1%BB%B9%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB81: Khu vực ven bờ xã Quảng Phong, Hải Hà (phía Bắc Đảo Miều)
+  Query: Khu Khu ven bờ Quảng, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20ven%20b%E1%BB%9D%20Qu%E1%BA%A3ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB82: Khu bến phà Cái Chiên phía Băc đảo Cái Chiên, Hải Hà
+  Query: Khu Khu phà Cái Chiên, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20ph%C3%A0%20C%C3%A1i%20Chi%C3%AAn%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB83: Bãi tắm Đầu Rồng- xã Cái Chiên, Hải Hà
+  Query: Bãi Bãi tắm Đầu Rồng, Quảng Ninh
+  Link: https://www.google.com/maps/search/B%C3%A3i%20B%C3%A3i%20t%E1%BA%AFm%20%C4%90%E1%BA%A7u%20R%E1%BB%93ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB84: Ven bờ phía Tây đảo Vĩnh Thực- Móng Cái
+  Query: Ven Ven bờ Tây đảo, Quảng Ninh
+  Link: https://www.google.com/maps/search/Ven%20Ven%20b%E1%BB%9D%20T%C3%A2y%20%C4%91%E1%BA%A3o%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB85: Ven bờ xã Quảng Nghĩa -Móng Cái
+  Query: Ven Ven bờ Quảng Nghĩa, Quảng Ninh
+  Link: https://www.google.com/maps/search/Ven%20Ven%20b%E1%BB%9D%20Qu%E1%BA%A3ng%20Ngh%C4%A9a%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB86: Ven bờ phường Hải Yên - Móng Cái
+  Query: Ven Ven bờ Hải Yên, Quảng Ninh
+  Link: https://www.google.com/maps/search/Ven%20Ven%20b%E1%BB%9D%20H%E1%BA%A3i%20Y%C3%AAn%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB87: Khu vực cửa sông KaLong - Móng Cái
+  Query: Khu Khu cửa sông KaLong, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20c%E1%BB%ADa%20s%C3%B4ng%20KaLong%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB88: Khu vực ven bờ  Núi Tổ Chim, Hải Hoà - Móng Cái 
+  Query: Khu Khu ven bờ Núi, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20ven%20b%E1%BB%9D%20N%C3%BAi%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB89: Bãi tắm Trà Cổ
+  Query: Bãi Bãi tắm Trà Cổ, Quảng Ninh
+  Link: https://www.google.com/maps/search/B%C3%A3i%20B%C3%A3i%20t%E1%BA%AFm%20Tr%C3%A0%20C%E1%BB%95%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB90: Khu vực cảng Cô Tô
+  Query: Khu Khu cảng Cô Tô, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20c%E1%BA%A3ng%20C%C3%B4%20T%C3%B4%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB91: Khu vực Vụng cát 2, 3 - khu 4 thị trấn Cô Tô
+  Query: Khu Khu Vụng khu Cô, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20V%E1%BB%A5ng%20khu%20C%C3%B4%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB92: Khu vực bãi tắm Hồng Vàn, xã Đồng Tiến
+  Query: Khu Khu bãi tắm Hồng, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20b%C3%A3i%20t%E1%BA%AFm%20H%E1%BB%93ng%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB93: Khu vực ven bờ phía Nam xã Đồng Tiến
+  Query: Khu Khu ven bờ Nam, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20ven%20b%E1%BB%9D%20Nam%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB94: Khu vực phía Bắc đảo Cô Tô con
+  Query: Khu Khu Bắc đảo Cô, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20B%E1%BA%AFc%20%C4%91%E1%BA%A3o%20C%C3%B4%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB95: Khu vực phía Nam đảo Cô Tô con
+  Query: Khu Khu Nam đảo Cô, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20Nam%20%C4%91%E1%BA%A3o%20C%C3%B4%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB96: Khu vực phía Đông đảo Cô Tô con
+  Query: Khu Khu Đông đảo Cô, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20%C4%90%C3%B4ng%20%C4%91%E1%BA%A3o%20C%C3%B4%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB97: Khu vực phía Tây  đảo Cô Tô con
+  Query: Khu Khu Tây đảo Cô, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20T%C3%A2y%20%C4%91%E1%BA%A3o%20C%C3%B4%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB98: Khu vực cảng Thanh Lân
+  Query: Khu Khu cảng Thanh Lân, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20c%E1%BA%A3ng%20Thanh%20L%C3%A2n%2C%20Qu%E1%BA%A3ng%20Ninh
+
+NB99: Khu vực nuôi nhuyễn thể phía Đông Nam đảo Thanh Lân
+  Query: Khu Khu Đông Nam đảo, Quảng Ninh
+  Link: https://www.google.com/maps/search/Khu%20Khu%20%C4%90%C3%B4ng%20Nam%20%C4%91%E1%BA%A3o%2C%20Qu%E1%BA%A3ng%20Ninh
+
