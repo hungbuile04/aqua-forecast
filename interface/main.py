@@ -41,6 +41,57 @@ def load_data():
     
     return df
 
+@st.cache_data
+def load_radius_data(species):
+    """Load radius data for the specified species"""
+    try:
+        filename = f'data/data_quang_ninh/R_{species}.csv'
+        df_radius = pd.read_csv(filename)
+        return df_radius
+    except FileNotFoundError:
+        st.warning(f"Không tìm thấy file {filename}")
+        return None
+
+@st.cache_data
+def calculate_hsi_for_all_stations(species, year, quarter, station_list):
+    """Calculate HSI for all stations for a specific year and quarter - optimized version"""
+    import concurrent.futures
+    
+    def calculate_single_station(station_row):
+        try:
+            forecast_df = predict_for_station(
+                species=species,
+                x=station_row['X'],
+                y=station_row['Y'],
+                start_year=year,
+                start_quarter=quarter,
+                n_quarters=1
+            )
+            
+            forecast_with_hsi = compute_hsi(forecast_df, species=species)
+            
+            if len(forecast_with_hsi) > 0:
+                return (station_row['Station'], {
+                    'HSI': forecast_with_hsi.iloc[0]['HSI'],
+                    'HSI_Level': forecast_with_hsi.iloc[0]['HSI_Level']
+                })
+        except:
+            pass
+        return None
+    
+    # Use ThreadPoolExecutor for parallel processing
+    hsi_results = {}
+    stations_list = station_list.to_dict('records')
+    
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+        results = executor.map(calculate_single_station, stations_list)
+        
+    for result in results:
+        if result:
+            hsi_results[result[0]] = result[1]
+    
+    return hsi_results
+
 # Load data
 df = load_data()
 
@@ -88,9 +139,49 @@ with col4:
 st.divider()
 
 # Display the map
-st.header("📍 Bản đồ các trạm quan trắc môi trường")
+st.header("🗺 Bản đồ các trạm quan trắc môi trường")
 
-st.info("💡 **Hướng dẫn:** Click vào các điểm đỏ trên bản đồ để chọn trạm và xem chỉ số HSI")
+# Map display settings
+st.subheader("⚙️ Cài đặt hiển thị bản đồ")
+
+col_map1, col_map2, col_map3 = st.columns(3)
+
+with col_map1:
+    map_year = st.number_input(
+        "Năm hiển thị",
+        min_value=2026,
+        max_value=2030,
+        value=start_year,
+        step=1,
+        key="map_year"
+    )
+
+with col_map2:
+    map_quarter = st.selectbox(
+        "Quý hiển thị",
+        options=[1, 2, 3, 4],
+        index=start_quarter - 1,
+        key="map_quarter"
+    )
+
+with col_map3:
+    show_hsi = st.checkbox(
+        "Hiển thị HSI",
+        value=True,
+        help="Tính toán và hiển thị HSI cho tất cả các trạm"
+    )
+
+# Load radius data based on selected species
+df_radius = load_radius_data(species)
+
+# Calculate HSI for all stations if needed
+hsi_data = {}
+if show_hsi:
+    with st.spinner('Đang tính toán HSI cho các trạm...'):
+        stations_unique = df[['Station', 'X', 'Y']].drop_duplicates()
+        hsi_data = calculate_hsi_for_all_stations(species, map_year, map_quarter, stations_unique)
+
+st.info("💡 **Hướng dẫn:** Click vào các điểm đỏ trên bản đồ để chọn trạm và xem chi tiết. Vòng tròn màu xanh biểu thị vùng áp dụng kết quả dự báo cho Q{}/{}. Hover chuột để xem thông tin nhanh.".format(map_quarter, map_year))
 
 # Create Folium map
 center_lat = stations['lat'].mean()
@@ -104,29 +195,126 @@ m = folium.Map(
     attr='Esri World Imagery'
 )
 
-# Add markers for each station
+# Add radius circles first (so they appear below markers)
+if df_radius is not None:
+    # Filter radius data for the selected map display period
+    radius_filtered = df_radius[
+        (df_radius['year'] == map_year) & 
+        (df_radius['quarter'] == map_quarter)
+    ].copy()
+    
+    # Merge with station coordinates
+    radius_filtered = radius_filtered.merge(
+        stations[['Station', 'lat', 'lon']], 
+        left_on='station', 
+        right_on='Station', 
+        how='left'
+    )
+    
+    # Add circles for each station
+    for idx, row in radius_filtered.iterrows():
+        if pd.notna(row['lat']) and pd.notna(row['lon']) and pd.notna(row['R_km']):
+            # Convert km to meters for folium Circle
+            radius_m = row['R_km'] * 1000
+            
+            # Create circle
+            folium.Circle(
+                location=[row['lat'], row['lon']],
+                radius=radius_m,
+                color='#2E86AB',
+                fill=True,
+                fillColor='#2E86AB',
+                fillOpacity=0.15,
+                weight=2,
+                opacity=0.5,
+                popup=folium.Popup(
+                    f"<b>{row['station']}</b><br>Bán kính: {row['R_km']} km<br>Q{row['quarter']}/{row['year']}",
+                    max_width=200
+                ),
+                tooltip=f"{row['station']}: R = {row['R_km']} km"
+            ).add_to(m)
+
+# Add markers for each station (on top of circles)
 for idx, row in stations.iterrows():
+    # Get radius info if available
+    radius_info = ""
+    if df_radius is not None:
+        station_radius = df_radius[
+            (df_radius['station'] == row['Station']) &
+            (df_radius['year'] == map_year) &
+            (df_radius['quarter'] == map_quarter)
+        ]
+        if len(station_radius) > 0:
+            r_km = station_radius.iloc[0]['R_km']
+            radius_info = f"<p style='margin: 5px 0;'><b>Bán kính áp dụng:</b> {r_km} km</p>"
+    
+    # Get HSI info if available
+    hsi_info = ""
+    hsi_tooltip = ""
+    marker_color = '#C81E1E'  # Default red
+    
+    if row['Station'] in hsi_data:
+        hsi_value = hsi_data[row['Station']]['HSI']
+        hsi_level = hsi_data[row['Station']]['HSI_Level']
+        
+        hsi_info = f"""
+        <p style='margin: 5px 0;'><b>HSI (Q{map_quarter}/{map_year}):</b> {hsi_value:.3f}</p>
+        <p style='margin: 5px 0;'><b>Đánh giá:</b> {hsi_level}</p>
+        """
+        
+        hsi_tooltip = f" | HSI: {hsi_value:.3f} ({hsi_level})"
+        
+        # Color code based on HSI value
+        if hsi_value >= 0.85:
+            marker_color = '#28a745'  # Green - Very suitable
+        elif hsi_value >= 0.75:
+            marker_color = '#ffc107'  # Yellow/Orange - Suitable
+        elif hsi_value >= 0.5:
+            marker_color = '#fd7e14'  # Orange - Less suitable
+        else:
+            marker_color = '#dc3545'  # Red - Not suitable
+    
     # Create popup content
     popup_html = f"""
-    <div style="font-family: Arial; width: 200px;">
+    <div style="font-family: Arial; width: 240px;">
         <h4 style="color: #2E86AB; margin: 0 0 10px 0;">{row['Station']}</h4>
         <p style="margin: 5px 0;"><b>Tên:</b> {row['Station_Name']}</p>
         <p style="margin: 5px 0;"><b>Vĩ độ:</b> {row['lat']:.6f}</p>
         <p style="margin: 5px 0;"><b>Kinh độ:</b> {row['lon']:.6f}</p>
+        {radius_info}
+        {hsi_info}
     </div>
     """
+    
+    tooltip_text = f"{row['Station']} - {row['Station_Name']}{hsi_tooltip}"
     
     folium.CircleMarker(
         location=[row['lat'], row['lon']],
         radius=8,
         popup=folium.Popup(popup_html, max_width=300),
-        tooltip=f"{row['Station']} - {row['Station_Name']}",
-        color='#C81E1E',
+        tooltip=tooltip_text,
+        color=marker_color,
         fill=True,
-        fillColor='#C81E1E',
+        fillColor=marker_color,
         fillOpacity=0.7,
         weight=2
     ).add_to(m)
+
+# Add legend to map
+if show_hsi:
+    legend_html = """
+    <div style="position: fixed; 
+                bottom: 50px; right: 50px; width: 200px; height: auto; 
+                background-color: white; z-index:9999; font-size:14px;
+                border:2px solid grey; border-radius: 5px; padding: 10px">
+    <p style="margin: 0 0 10px 0; font-weight: bold;">Chỉ số HSI:</p>
+    <p style="margin: 5px 0;"><span style="color: #28a745;">●</span> Rất phù hợp (≥0.85)</p>
+    <p style="margin: 5px 0;"><span style="color: #ffc107;">●</span> Phù hợp (≥0.75)</p>
+    <p style="margin: 5px 0;"><span style="color: #fd7e14;">●</span> Ít phù hợp (≥0.5)</p>
+    <p style="margin: 5px 0;"><span style="color: #dc3545;">●</span> Không phù hợp (<0.5)</p>
+    </div>
+    """
+    m.get_root().html.add_child(folium.Element(legend_html))
 
 # Initialize session state for selected station FIRST
 if 'selected_station' not in st.session_state:
@@ -138,7 +326,7 @@ map_data = st_folium(
     width=None,
     height=500,
     returned_objects=["last_object_clicked"],
-    key="folium_map"
+    key=f"folium_map_{map_year}_{map_quarter}_{species}"
 )
 
 # Handle marker click - Update session state if clicked
@@ -156,8 +344,10 @@ if map_data and map_data.get("last_object_clicked"):
         st.session_state.selected_station = closest_station
         st.rerun()
 
+st.divider()
+
 # Station selection for HSI calculation (placed right after map)
-st.subheader("🎯 Tính toán chỉ số HSI cho trạm")
+st.subheader("🎯 Tính toán chỉ số HSI chi tiết cho trạm")
 
 # Sort stations by number
 stations_sorted = stations.copy()
@@ -209,7 +399,7 @@ with col_select1:
     st.session_state.selected_station = selected_station
 
 with col_select2:
-    calculate_btn = st.button("🔍 Tính HSI", type="primary", use_container_width=True)
+    calculate_btn = st.button("📊 Tính HSI", type="primary", use_container_width=True)
 
 # Calculate and display HSI when button is clicked or station is selected
 if selected_station and (calculate_btn or 'last_station' not in st.session_state or st.session_state.last_station != selected_station):
@@ -236,15 +426,36 @@ if selected_station and (calculate_btn or 'last_station' not in st.session_state
             # Calculate HSI using compute_hsi
             forecast_with_hsi = compute_hsi(forecast_df, species=species)
             
+            # Get radius information for each forecasted quarter
+            if df_radius is not None:
+                radius_info_list = []
+                for idx, row in forecast_with_hsi.iterrows():
+                    station_radius = df_radius[
+                        (df_radius['station'] == selected_station) &
+                        (df_radius['year'] == int(row['year'])) &
+                        (df_radius['quarter'] == int(row['quarter']))
+                    ]
+                    if len(station_radius) > 0:
+                        radius_info_list.append(station_radius.iloc[0]['R_km'])
+                    else:
+                        radius_info_list.append(None)
+                forecast_with_hsi['R_km'] = radius_info_list
+            
             # Format results for display
             hsi_results = []
             for idx, row in forecast_with_hsi.iterrows():
                 quarter_str = f"Q{int(row['quarter'])}/{int(row['year'])}"
-                hsi_results.append({
+                result_dict = {
                     'Thời gian': quarter_str,
                     'HSI': round(row['HSI'], 3) if not pd.isna(row['HSI']) else 'N/A',
                     'Đánh giá': row['HSI_Level']
-                })
+                }
+                
+                # Add radius info if available
+                if 'R_km' in row and pd.notna(row['R_km']):
+                    result_dict['Bán kính (km)'] = row['R_km']
+                
+                hsi_results.append(result_dict)
             
             hsi_df = pd.DataFrame(hsi_results)
             
@@ -254,8 +465,12 @@ if selected_station and (calculate_btn or 'last_station' not in st.session_state
             # Show parameters used
             st.caption(f"📊 Loài: **{species_display}** | Năm: **{start_year}** | Quý bắt đầu: **Q{start_quarter}** | Số quý: **{n_quarters}**")
             
+            # Show radius note if available
+            if 'Bán kính (km)' in hsi_df.columns:
+                st.info("ℹ️ **Bán kính áp dụng** là khoảng cách từ trạm quan trắc mà kết quả dự báo HSI có thể áp dụng được.")
+            
             # Create tabs for chart and table view
-            tab1, tab2 = st.tabs(["📈 Biểu đồ", "📋 Bảng dữ liệu"])
+            tab1, tab2, tab3 = st.tabs(["📈 Biểu đồ HSI", "🌡️ Biểu đồ các thông số môi trường", "📋 Bảng dữ liệu"])
             
             with tab1:
                 # Prepare data for chart
@@ -321,22 +536,136 @@ if selected_station and (calculate_btn or 'last_station' not in st.session_state
                     st.metric("HSI cao nhất", f"{max_hsi:.3f}")
             
             with tab2:
+                st.markdown("### 🌡️ Các thông số môi trường dự báo")
+                
+                # Get environmental parameters from forecast_df
+                # Common parameters to visualize
+                param_names = {
+                    'temp': 'Nhiệt độ (°C)',
+                    'salinity': 'Độ mặn (‰)',
+                    'DO': 'Oxy hòa tan (mg/L)',
+                    'pH': 'pH',
+                    'turbidity': 'Độ đục (NTU)',
+                    'chlorophyll': 'Chlorophyll-a (μg/L)',
+                    'NH4': 'Amoni - NH4+ (mg/L)',
+                    'NO3': 'Nitrat - NO3- (mg/L)',
+                    'PO4': 'Phosphat - PO43- (mg/L)'
+                }
+                
+                # Filter only available parameters
+                available_params = [col for col in forecast_with_hsi.columns if col in param_names.keys()]
+                
+                if len(available_params) > 0:
+                    # Let user select parameters to display
+                    selected_params = st.multiselect(
+                        "Chọn các thông số để hiển thị:",
+                        options=available_params,
+                        default=available_params[:3] if len(available_params) >= 3 else available_params,
+                        format_func=lambda x: param_names.get(x, x)
+                    )
+                    
+                    if selected_params:
+                        # Create time labels
+                        time_labels = [f"Q{int(row['quarter'])}/{int(row['year'])}" 
+                                     for _, row in forecast_with_hsi.iterrows()]
+                        
+                        # Create subplots
+                        num_params = len(selected_params)
+                        cols_per_row = 2
+                        num_rows = (num_params + cols_per_row - 1) // cols_per_row
+                        
+                        from plotly.subplots import make_subplots
+                        
+                        fig_env = make_subplots(
+                            rows=num_rows,
+                            cols=cols_per_row,
+                            subplot_titles=[param_names.get(p, p) for p in selected_params],
+                            vertical_spacing=0.12,
+                            horizontal_spacing=0.1
+                        )
+                        
+                        for idx, param in enumerate(selected_params):
+                            row = (idx // cols_per_row) + 1
+                            col = (idx % cols_per_row) + 1
+                            
+                            values = forecast_with_hsi[param].values
+                            
+                            fig_env.add_trace(
+                                go.Scatter(
+                                    x=time_labels,
+                                    y=values,
+                                    mode='lines+markers',
+                                    name=param_names.get(param, param),
+                                    line=dict(width=2),
+                                    marker=dict(size=8),
+                                    showlegend=False,
+                                    hovertemplate='<b>%{x}</b><br>Giá trị: %{y:.2f}<br><extra></extra>'
+                                ),
+                                row=row,
+                                col=col
+                            )
+                            
+                            # Update axes
+                            fig_env.update_xaxes(showgrid=True, gridwidth=1, gridcolor='lightgray', row=row, col=col)
+                            fig_env.update_yaxes(showgrid=True, gridwidth=1, gridcolor='lightgray', row=row, col=col)
+                        
+                        # Update layout
+                        fig_env.update_layout(
+                            height=300 * num_rows,
+                            plot_bgcolor='rgba(0,0,0,0)',
+                            paper_bgcolor='rgba(0,0,0,0)',
+                            hovermode='closest'
+                        )
+                        
+                        st.plotly_chart(fig_env, use_container_width=True)
+                        
+                        # Show statistics table for selected parameters
+                        st.markdown("#### 📊 Thống kê các thông số")
+                        stats_data = []
+                        for param in selected_params:
+                            values = forecast_with_hsi[param].values
+                            stats_data.append({
+                                'Thông số': param_names.get(param, param),
+                                'Trung bình': f"{values.mean():.2f}",
+                                'Min': f"{values.min():.2f}",
+                                'Max': f"{values.max():.2f}",
+                                'Độ lệch chuẩn': f"{values.std():.2f}"
+                            })
+                        
+                        stats_df = pd.DataFrame(stats_data)
+                        st.dataframe(stats_df, use_container_width=True, hide_index=True)
+                    else:
+                        st.info("Vui lòng chọn ít nhất một thông số để hiển thị.")
+                else:
+                    st.warning("Không tìm thấy thông số môi trường trong dữ liệu dự báo.")
+            
+            with tab3:
                 # Display HSI table with color coding
+                column_config = {
+                    "HSI": st.column_config.NumberColumn(
+                        "HSI",
+                        help="Chỉ số môi trường thích hợp (0-1)",
+                        format="%.3f"
+                    ),
+                    "Đánh giá": st.column_config.TextColumn(
+                        "Đánh giá",
+                        help="Mức độ phù hợp"
+                    )
+                }
+                
+                # Add radius column config if available
+                if 'Bán kính (km)' in hsi_df.columns:
+                    column_config["Bán kính (km)"] = st.column_config.NumberColumn(
+                        "Bán kính (km)",
+                        help="Vùng áp dụng kết quả dự báo",
+                        format="%.1f"
+                    )
+                
                 st.dataframe(
                     hsi_df,
                     use_container_width=True,
                     hide_index=True,
-                    column_config={
-                        "HSI": st.column_config.NumberColumn(
-                            "HSI",
-                            help="Chỉ số môi trường thích hợp (0-1)",
-                            format="%.3f"
-                        ),
-                        "Đánh giá": st.column_config.TextColumn(
-                            "Đánh giá",
-                            help="Mức độ phù hợp"
-                        )
-                    }
+                    column_config=column_config
                 )
             
         except Exception as e:
