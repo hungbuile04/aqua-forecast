@@ -303,17 +303,27 @@ for idx, row in stations.iterrows():
 # Add legend to map
 if show_hsi:
     legend_html = """
-    <div style="position: fixed; 
-                bottom: 50px; right: 50px; width: 200px; height: auto; 
-                background-color: white; z-index:9999; font-size:14px;
-                border:2px solid grey; border-radius: 5px; padding: 10px">
-    <p style="margin: 0 0 10px 0; font-weight: bold;">Chỉ số HSI:</p>
-    <p style="margin: 5px 0;"><span style="color: #28a745;">●</span> Rất phù hợp (≥0.85)</p>
-    <p style="margin: 5px 0;"><span style="color: #ffc107;">●</span> Phù hợp (≥0.75)</p>
-    <p style="margin: 5px 0;"><span style="color: #fd7e14;">●</span> Ít phù hợp (≥0.5)</p>
-    <p style="margin: 5px 0;"><span style="color: #dc3545;">●</span> Không phù hợp (<0.5)</p>
+    <div style="
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        width: 200px;
+        background-color: white;
+        z-index: 9999;
+        font-size: 14px;
+        border: 2px solid grey;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    ">
+        <p style="margin: 0 0 10px 0; font-weight: bold;">Chỉ số HSI:</p>
+        <p style="margin: 5px 0;"><span style="color: #28a745;">●</span> Rất phù hợp (≥0.85)</p>
+        <p style="margin: 5px 0;"><span style="color: #ffc107;">●</span> Phù hợp (≥0.75)</p>
+        <p style="margin: 5px 0;"><span style="color: #fd7e14;">●</span> Ít phù hợp (≥0.5)</p>
+        <p style="margin: 5px 0;"><span style="color: #dc3545;">●</span> Không phù hợp (&lt;0.5)</p>
     </div>
     """
+
     m.get_root().html.add_child(folium.Element(legend_html))
 
 # Initialize session state for selected station FIRST
@@ -541,15 +551,21 @@ if selected_station and (calculate_btn or 'last_station' not in st.session_state
                 # Get environmental parameters from forecast_df
                 # Common parameters to visualize
                 param_names = {
-                    'temp': 'Nhiệt độ (°C)',
-                    'salinity': 'Độ mặn (‰)',
+                    'Temperature': 'Nhiệt độ (°C)',
+                    'Salinity': 'Độ mặn (‰)',
+                    'Alkalinity': 'Độ kiềm (mg/L CaCO3)',
+                    'Transparency': 'Độ trong (m)',
                     'DO': 'Oxy hòa tan (mg/L)',
                     'pH': 'pH',
                     'turbidity': 'Độ đục (NTU)',
                     'chlorophyll': 'Chlorophyll-a (μg/L)',
-                    'NH4': 'Amoni - NH4+ (mg/L)',
+                    'NH3': 'Amoni (mg/L)',
                     'NO3': 'Nitrat - NO3- (mg/L)',
-                    'PO4': 'Phosphat - PO43- (mg/L)'
+                    'PO4': 'Phosphat - PO43- (mg/L)',
+                    'As': 'Asen (μg/L)',
+                    'Cd': 'Cadimi (μg/L)',
+                    'Pb': 'Chì (μg/L)',
+                    'Hg': 'Thủy ngân (μg/L)'
                 }
                 
                 # Filter only available parameters
@@ -560,7 +576,7 @@ if selected_station and (calculate_btn or 'last_station' not in st.session_state
                     selected_params = st.multiselect(
                         "Chọn các thông số để hiển thị:",
                         options=available_params,
-                        default=available_params[:3] if len(available_params) >= 3 else available_params,
+                        default=available_params[:8] if len(available_params) >= 3 else available_params,
                         format_func=lambda x: param_names.get(x, x)
                     )
                     
